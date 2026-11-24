@@ -14,7 +14,7 @@ return new class extends Migration
          Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('apellido');
+            $table->string('apellido')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-       Schema::dropIfExists('usuario');
+       Schema::dropIfExists('usuarios');
     }
 };
