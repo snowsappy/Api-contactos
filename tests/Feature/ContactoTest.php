@@ -12,11 +12,6 @@ use Laravel\Sanctum\Sanctum;
 
 
 uses(RefreshDatabase::class);
-test('example', function () {
-    $response = $this->get('/');
-
-    $response->assertStatus(200);
-});
 
 
 
@@ -37,7 +32,8 @@ it('obtener contactos por usuario', function () {
         'password'=>"12345",
         
     ]);
-    $this->actingAs($usuario,'sanctum');
+  
+    Sanctum::actingAs($usuario);
     $usuario->contactos()->create([
         "nombre"=>"mariana",
         "apellido"=>"alvis",

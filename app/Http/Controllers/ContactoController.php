@@ -45,14 +45,20 @@ class ContactoController extends Controller
 
     public function agregarContatos(Request $request)
     {
-        if($request->apellido==null || $request->nombre==null ||  $request->telefono==null ||  $request->email==null){
+        if( $request->nombre==null ||  $request->telefono==null){
 
-            return response()->json(['error' => 'faltan campos por rellenar'], 400);        
+            return response()->json(['error' => 'faltan campos obligatorios por rellenar'], 422);        
         }
         $validacion = Contacto::where('telefono', $request->telefono)->first();
-        $validacion2 = Contacto::where('email', $request->email)->first();
+        $validacion2 =null;
+        if($validacion2){
+
+            $validacion2 = Contacto::where('email', $request->email)->first();
+
+        }
+        
         if ($validacion || $validacion2) {
-            return response()->json(['error' => 'El número de contacto ya existe'], 400);
+            return response()->json(['error' => 'El número o correo de contacto  ya existe'], 422);
         }
         $contacto = Contacto::create(['nombre' => $request->nombre,
             'apellido' => $request->apellido,
