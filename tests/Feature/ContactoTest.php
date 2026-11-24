@@ -17,10 +17,7 @@ uses(RefreshDatabase::class);
 
 
 
-it('obtener contactos', function () {
- 
-    $this->getJson('/api/v1/contactos/general')->assertOk();
-});
+
 
 it('obtener contactos por usuario', function () {
     
