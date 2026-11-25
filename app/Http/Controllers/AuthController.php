@@ -21,7 +21,8 @@ class AuthController extends Controller
 
         }
         // estudiar esto que todavia no me lo se bien
-        $token = $usuario->createToken($request->validated('device'))->plainTextToken;
+        $device=$request->validated('device') ?? 'dispositivo';
+        $token = $usuario->createToken($device)->plainTextToken;
 
         return response()->json(['message' => 'datos de incio correctos',
 
